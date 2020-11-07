@@ -1,4 +1,4 @@
-export default (row, col, bombs) => {
+export default function CreateBoard(row, col, bombs){
     let board = [];
     let mineLocation = [];
     // Create blank board
@@ -32,62 +32,62 @@ export default (row, col, bombs) => {
     }
   
     // Add Numbers
-    for (let roww = 0; roww < row; roww++) {
-      for (let coll = 0; coll < col; coll++) {
-        if (board[roww][coll].value === "X") {
+    for (let i = 0; i < row; i++) {
+      for (let j = 0; j < col; j++) {
+        if (board[i][j].value === "X") {
           continue;
         }
   
         // Top
-        if (roww > 0 && board[roww - 1][coll].value === "X") {
-          board[roww][coll].value++;
+        if (i > 0 && board[i - 1][j].value === "X") {
+          board[i][j].value++;
         }
   
         // Top Right
         if (
-          roww > 0 &&
-          coll < col - 1 &&
-          board[roww - 1][coll + 1].value === "X"
+          i > 0 &&
+          j < col - 1 &&
+          board[i - 1][j + 1].value === "X"
         ) {
-          board[roww][coll].value++;
+          board[i][j].value++;
         }
   
         // Right
-        if (coll < col - 1 && board[roww][coll + 1].value === "X") {
-          board[roww][coll].value++;
+        if (j < col - 1 && board[i][j + 1].value === "X") {
+          board[i][j].value++;
         }
   
         // Botoom Right
         if (
-          roww < row - 1 &&
-          coll < col - 1 &&
-          board[roww + 1][coll + 1].value === "X"
+          i < row - 1 &&
+          j < col - 1 &&
+          board[i + 1][j + 1].value === "X"
         ) {
-          board[roww][coll].value++;
+          board[i][j].value++;
         }
   
         // Bottom
-        if (roww < row - 1 && board[roww + 1][coll].value === "X") {
-          board[roww][coll].value++;
+        if (i < row - 1 && board[i + 1][j].value === "X") {
+          board[i][j].value++;
         }
   
         // Bottom Left
         if (
-          roww < row - 1 &&
-          coll > 0 &&
-          board[roww + 1][coll - 1].value === "X"
+          i < row - 1 &&
+          j > 0 &&
+          board[i + 1][j - 1].value === "X"
         ) {
-          board[roww][coll].value++;
+          board[i][j].value++;
         }
   
         // LEft
-        if (coll > 0 && board[roww][coll - 1].value === "X") {
-          board[roww][coll].value++;
+        if (j > 0 && board[i][j - 1].value === "X") {
+          board[i][j].value++;
         }
   
         // Top Left
-        if (roww > 0 && coll > 0 && board[roww - 1][coll - 1].value === "X") {
-          board[roww][coll].value++;
+        if (i > 0 && j > 0 && board[i - 1][j - 1].value === "X") {
+          board[i][j].value++;
         }
       }
     }
