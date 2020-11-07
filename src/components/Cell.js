@@ -14,7 +14,8 @@ export default function Cell({details,updateFlag,revealcell}) {
     
     return (
         <div style={style.cellStyle} onClick={()=>{revealcell(details.x,details.y)}} onContextMenu={(e)=>updateFlag(e,details.x,details.y)}>
-            {details.revealed ? details.value : ""}
+            {details.value!==0 && details.value}
+            {/* {details.revealed ? details.value : ""} */}
         </div>
     )
 }

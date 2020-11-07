@@ -11,7 +11,7 @@ function Board() {
     }
     useEffect(()=>{
         const freshBoard = () => {
-            const newBoard=CreateBoard(10,10,15);
+            const newBoard=CreateBoard(10,10,20);
             // console.log(newBoard.mineLocation);
             setGrid(newBoard.board);
         }
