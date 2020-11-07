@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import CreateBoard from '../utils/CreateBoard';
+import Cell from './Cell';
 function Board() {
     const [grid,setGrid]=useState([]);
 
@@ -9,12 +10,17 @@ function Board() {
         
     }
     useEffect(()=>{
-        function freshBoard(){
-            const newBoard=CreateBoard(10,10,9);
-            setGrid(newBoard);
+        const freshBoard = () => {
+            const newBoard=CreateBoard(10,10,15);
+            // console.log(newBoard.mineLocation);
+            setGrid(newBoard.board);
         }
         freshBoard();
     },[]);
+    const updateFlag=(e)=>{
+        e.preventDefault();
+        console.log("Right Click");
+    }
     
     return (
         <div className="parent">
@@ -22,15 +28,7 @@ function Board() {
                 return (
                     <div style={style}>
                         {singlerow.map(singlecol=>{
-                                return <div 
-                                style={{ 
-                                    width : 30,
-                                    height : 30,  
-                                    padding : '5px' ,
-                                    border : '3px solid red'}}
-                                    >
-                                    {JSON.stringify(singlecol.value)}
-                                    </div>
+                          return  <Cell details={singlecol} updateFlag={updateFlag}/>
                         })}
                     </div>
                 )

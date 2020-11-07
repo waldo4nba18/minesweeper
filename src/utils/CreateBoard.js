@@ -1,84 +1,100 @@
-// Using the util function to create board
-function CreateBoard(row,col,mines){
-    let board=[];
-    let mineslocation=[];
-
-
-    if(mines>row*col){
-        mines=(row*col)/3;
+export default (row, col, bombs) => {
+    let board = [];
+    let mineLocation = [];
+    // Create blank board
+  
+    // x = column
+    for (let x = 0; x < row; x++) {
+      let subCol = [];
+      for (let y = 0; y < col; y++) {
+        subCol.push({
+          value: 0,
+          revealed: false,
+          x: x,
+          y: y,
+          flagged: false,
+        });
+      }
+      board.push(subCol);
     }
-
-    for(let x=0;x<row;x++){
-        let subcol=[];
-        for(let y=0;y<col;y++){
-            subcol.push({
-                value:0,
-                isrevealed:false,
-                x:x,
-                y:y,
-                isflagged:false
-            });
+  
+    // Randomize Bomb Placement
+    let bombsCount = 0;
+    while (bombsCount < bombs) {
+      let x = randomNum(0, row - 1);
+      let y = randomNum(0, col - 1);
+  
+      if (board[x][y].value === 0) {
+        board[x][y].value = "X";
+        mineLocation.push([x, y]);
+        bombsCount++;
+      }
+    }
+  
+    // Add Numbers
+    for (let roww = 0; roww < row; roww++) {
+      for (let coll = 0; coll < col; coll++) {
+        if (board[roww][coll].value === "X") {
+          continue;
         }
-        board.push(subcol);
-    }
-    let minescount=0;
-    // Placing the mines at the random places 
-    while(minescount<mines){
-        let x=Math.floor(Math.random()*row);
-        let y=Math.floor(Math.random()*col);
-        if(board[x][y].value === 0){
-            board[x][y].value="X";
-            mineslocation.push([x,y]);
-            minescount++;
+  
+        // Top
+        if (roww > 0 && board[roww - 1][coll].value === "X") {
+          board[roww][coll].value++;
         }
-    }
-    for(let x=0;x<row;row++){
-        for(let y=0;y<col;col++){
-                if(board[x][y].value === "X"){
-                    continue;
-                }
-
-                // top
-                
-                if(x>0 && board[x-1][y].value === "X"){
-                    board[x][y].value++;
-                }
-
-                // top right
-                
-                if(x>0 && y<0 && board[x-1][y+1].value === "X"){
-                    board[x][y].value++;
-                }
-
-                // right
-                
-                if(y<col-1 && board[x][y+1].value === "X"){
-                    board[x][y].value++;
-                }
-
-                // 
-                if(x<row-1 && y<col-1 && board[x+1][y+1].value === "X"){
-                    board[x][y].value++;
-                }
-
-                if(x>0 && y>0 && board[x-1][y-1].value === "X"){
-                    board[x][y].value++;
-                }
-                if(x<row-1 && board[x+1][y].value === "X"){
-                    board[x][y].value++;
-                }
-            
-                if(y>0 && board[x][y-1].value === "X"){
-                    board[x][y].value++;
-                }
-                if(x>0 && y>0 && board[x-1][y-1].value === "X"){
-                    board[x][y].value++;
-                }
-            
+  
+        // Top Right
+        if (
+          roww > 0 &&
+          coll < col - 1 &&
+          board[roww - 1][coll + 1].value === "X"
+        ) {
+          board[roww][coll].value++;
         }
+  
+        // Right
+        if (coll < col - 1 && board[roww][coll + 1].value === "X") {
+          board[roww][coll].value++;
+        }
+  
+        // Botoom Right
+        if (
+          roww < row - 1 &&
+          coll < col - 1 &&
+          board[roww + 1][coll + 1].value === "X"
+        ) {
+          board[roww][coll].value++;
+        }
+  
+        // Bottom
+        if (roww < row - 1 && board[roww + 1][coll].value === "X") {
+          board[roww][coll].value++;
+        }
+  
+        // Bottom Left
+        if (
+          roww < row - 1 &&
+          coll > 0 &&
+          board[roww + 1][coll - 1].value === "X"
+        ) {
+          board[roww][coll].value++;
+        }
+  
+        // LEft
+        if (coll > 0 && board[roww][coll - 1].value === "X") {
+          board[roww][coll].value++;
+        }
+  
+        // Top Left
+        if (roww > 0 && coll > 0 && board[roww - 1][coll - 1].value === "X") {
+          board[roww][coll].value++;
+        }
+      }
     }
-
-
-    return board;
-}
-export default CreateBoard;
+    return { board, mineLocation };
+  };
+  
+  function randomNum(min = 0, max) {
+    // min and max included
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
