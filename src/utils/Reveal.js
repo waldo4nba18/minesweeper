@@ -1,4 +1,4 @@
-export const revealed=(arr,x,y,newNoMines)=>{
+export const revealed=(arr,x,y,newNonMines)=>{
     
     // all the cells which are adjaced to zero must be stored in the array 
     // so that it can be revealed latter
@@ -10,7 +10,7 @@ export const revealed=(arr,x,y,newNoMines)=>{
         let i=one.x;
         let j=one.y;
         if(!one.revealed){
-            newNoMines--;
+            newNonMines--;
             one.revealed=true;
         }
         if(one.value !==0){
@@ -32,8 +32,8 @@ export const revealed=(arr,x,y,newNoMines)=>{
         // bottom right
 
         if(
-            i<show.length-1 &&
-            j<show[0].length-1 &&
+            i<arr.length-1 &&
+            j<arr[0].length-1 &&
             arr[i+1][j+1].value===0 &&
             !arr[i+1][j+1].revealed
         ){
@@ -44,7 +44,7 @@ export const revealed=(arr,x,y,newNoMines)=>{
 
         if(
             i>0 &&
-            j<show[0].length-1 &&
+            j<arr[0].length-1 &&
             arr[i-1][j+1].value===0 &&
             !arr[i-1][j+1].revealed
         ){
@@ -74,7 +74,7 @@ export const revealed=(arr,x,y,newNoMines)=>{
         // right
 
         if(
-            j<show[0].length-1 &&
+            j<arr[0].length-1 &&
             arr[i][j+1].value===0 &&
             !arr[i][j+1].revealed
         ){
@@ -169,5 +169,7 @@ export const revealed=(arr,x,y,newNoMines)=>{
             newNonMines--;
           }
     }
+
+    return {arr,newNonMines}
 
 }
