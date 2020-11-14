@@ -4,8 +4,13 @@ import './App.css';
 
 function App() {
   return (
-    <div className="aligned">
-      <Board/>
+    <div>
+      <div className="heading">
+      <h1>MineSweeper</h1>
+      </div>
+      <div className="aligned">   
+        <Board/>
+      </div>
     </div>
   );
 }

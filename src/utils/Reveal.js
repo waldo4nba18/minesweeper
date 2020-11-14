@@ -5,7 +5,7 @@ export const revealed=(arr,x,y,newNonMines)=>{
 
     let show=[];
     show.push(arr[x][y]);
-    while(show.length!=0){
+    while(show.length!==0){
         let one=show.pop();
         let i=one.x;
         let j=one.y;
@@ -22,7 +22,7 @@ export const revealed=(arr,x,y,newNonMines)=>{
         if(
             i>0 && 
             j>0 &&
-            arr[i-1][j-1].value==0 &&
+            arr[i-1][j-1].value===0 &&
             !arr[i-1][j-1].revealed
         )
         {
