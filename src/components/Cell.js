@@ -34,7 +34,7 @@ export default function Cell({details,updateFlag,revealcell}) {
             playOne();
         }
         // calling revealcell for specific cell x and y
-        revealcell(details.x,details.y);
+        revealcell(details.x,details.y);  
     }
     
     // Right Click Function

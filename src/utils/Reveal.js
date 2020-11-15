@@ -1,7 +1,7 @@
 export const revealed=(arr,x,y,newNonMines)=>{
     
     // all the cells which are adjaced to zero must be stored in the array 
-    // so that it can be revealed latter
+    // so that it can be revealed later
 
     let show=[];
     show.push(arr[x][y]);

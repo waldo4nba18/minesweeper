@@ -1,10 +1,9 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect} from 'react';
 import CreateBoard from '../utils/CreateBoard';
 import { revealed } from "../utils/Reveal";
 import Cell from './Cell';
 import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 function Board() {
     const [grid,setGrid]=useState([]);
     const [nonMinecount,setNonMinecount]=useState(0);
@@ -49,6 +48,10 @@ function Board() {
             setGrid(newGrid);
             setTimeout(newfresh,500);
         }
+        if(nonMinecount===0){
+            toast.success('Wohoo!!,You won',{ position: "top-center", autoClose: 1000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, });
+            setTimeout(newfresh,500);
+        }
         else{
             let revealedboard=revealed(newGrid,x,y,nonMinecount);
             setGrid(revealedboard.arr);
@@ -60,13 +63,13 @@ function Board() {
     return (
         <div className="parent">
             <div>
-                <span style={{color:'white',textAlign:'center',}}>{nonMinecount}</span>
+                <h3 style={{color:'white',textAlign:'center',fontSize:'30px',margin:'0px'}}>Non-Mines - {nonMinecount}</h3>
                 <ToastContainer></ToastContainer>
-                {grid.map((singlerow,i1)=>{
+                {grid.map((singlerow,index1)=>{
                     return (
-                        <div style={style} key={i1}>
-                            {singlerow.map((singlecol,i2)=>{
-                            return  <Cell details={singlecol} key={i2} updateFlag={updateFlag} revealcell={revealcell}/>
+                        <div style={style} key={index1}>
+                            {singlerow.map((singlecol,index2)=>{
+                            return  <Cell details={singlecol} key={index2} updateFlag={updateFlag} revealcell={revealcell}/>
                             })}
                             
                         </div>

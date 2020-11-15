@@ -1,4 +1,4 @@
-export default function CreateBoard(row, col, bombs){
+export default function CreateBoard(row, col, mines){
   // Board for storing the values for each cell
     let board = [];
   // Tracking the minelocation 
@@ -20,8 +20,8 @@ export default function CreateBoard(row, col, bombs){
     }
   
     // Randomize Bomb Placement
-    let bombsCount = 0;
-    while (bombsCount < bombs) {
+    let minesCount = 0;
+    while (minesCount < mines) {
       // Implementing random function
       let x = random(0, row - 1);
       let y = random(0, col - 1);
@@ -30,7 +30,7 @@ export default function CreateBoard(row, col, bombs){
       if (board[x][y].value === 0) {
         board[x][y].value = "X";
         mineLocation.push([x, y]);
-        bombsCount++;
+        minesCount++;
       }
     }
   
