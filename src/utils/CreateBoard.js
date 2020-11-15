@@ -1,9 +1,10 @@
 export default function CreateBoard(row, col, bombs){
+  // Board for storing the values for each cell
     let board = [];
+  // Tracking the minelocation 
     let mineLocation = [];
     // Create blank board
   
-    // x = column
     for (let x = 0; x < row; x++) {
       let subCol = [];
       for (let y = 0; y < col; y++) {
@@ -21,9 +22,11 @@ export default function CreateBoard(row, col, bombs){
     // Randomize Bomb Placement
     let bombsCount = 0;
     while (bombsCount < bombs) {
-      let x = randomNum(0, row - 1);
-      let y = randomNum(0, col - 1);
+      // Implementing random function
+      let x = random(0, row - 1);
+      let y = random(0, col - 1);
   
+      // placing bomb at random location(x,y) on board[x][y]
       if (board[x][y].value === 0) {
         board[x][y].value = "X";
         mineLocation.push([x, y]);
@@ -31,6 +34,8 @@ export default function CreateBoard(row, col, bombs){
       }
     }
   
+    // Increasing the value of specific cell 
+    // If the cell has mines increasing the cell value by 1.
     // Add Numbers
     for (let i = 0; i < row; i++) {
       for (let j = 0; j < col; j++) {
@@ -94,7 +99,8 @@ export default function CreateBoard(row, col, bombs){
     return { board, mineLocation };
   };
   
-  function randomNum(min = 0, max) {
+  // Random function used for generating random value of x & y
+  function random(min = 0, max) {
     // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
   }

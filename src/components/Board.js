@@ -13,16 +13,18 @@ function Board() {
         display : 'flex',
         flexDirection : 'row',
         width:'fit-content',
+        color:'white',
         
     }
     useEffect(()=>{
         
         freshBoard();
     },[]);
+
+    // Making freshboard atstart
     const freshBoard = () => {
         const newBoard=CreateBoard(10,10,20);
         setNonMinecount(10*10-20);
-        // console.log(newBoard.mineLocation);
         setmineLocation(newBoard.mineLocation);
         setGrid(newBoard.board);
     }
@@ -34,18 +36,18 @@ function Board() {
         console.log(newGrid[x][y]);
         setGrid(newGrid);
     }
-    const abc=()=>{
+    const newfresh=()=>{
         freshBoard();
     }
     const revealcell=(x,y)=>{
         let newGrid=JSON.parse(JSON.stringify(grid));
         if(newGrid[x][y].value==="X"){
-            toast.dark(' Clicked on Mine ,Try Again', { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, });
+            toast.dark(' Clicked on Mine ,Try Again', { position: "top-center", autoClose: 1000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, });
             for(let i=0;i<mineLocation.length;i++){
                 newGrid[mineLocation[i][0]][mineLocation[i][1]].revealed=true;
             }
             setGrid(newGrid);
-            setTimeout(abc,2000);
+            setTimeout(newfresh,500);
         }
         else{
             let revealedboard=revealed(newGrid,x,y,nonMinecount);
@@ -58,6 +60,7 @@ function Board() {
     return (
         <div className="parent">
             <div>
+                <span style={{color:'white',textAlign:'center',}}>{nonMinecount}</span>
                 <ToastContainer></ToastContainer>
                 {grid.map((singlerow,i1)=>{
                     return (
@@ -73,6 +76,5 @@ function Board() {
           
         </div>
     ) 
-    
 }
 export default Board;

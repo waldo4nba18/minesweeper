@@ -4,6 +4,7 @@ import boopSfx from '../assets/boop.mp3';
 import plungerSfx from '../assets/plunger.mp3';
 import biteSfx from '../assets/bite.mp3';
 export default function Cell({details,updateFlag,revealcell}) {
+  // Adding three sounds
     const [playOne]=useSound(plungerSfx,{volume:5.6});
     const [playTwo]=useSound(boopSfx,{volume:10.5});
     const [playThree]=useSound(biteSfx,{volume:10.5});
@@ -23,19 +24,26 @@ export default function Cell({details,updateFlag,revealcell}) {
             fontWeight:'1000'
         },
     }
+
+    // Playing Sound on differents Clicks
+    
     const click=()=>{
         if(details.value==='X'){
             playTwo();
         }else{
             playOne();
         }
+        // calling revealcell for specific cell x and y
         revealcell(details.x,details.y);
-        
     }
+    
+    // Right Click Function
+    
     const rightclick=(e)=>{
         updateFlag(e,details.x,details.y)
         playThree();
     }
+    // rendering the cell component and showing the different values on right and left clicks 
     
     return (
         <div style={style.cellStyle} onClick={click} onContextMenu={rightclick}>
