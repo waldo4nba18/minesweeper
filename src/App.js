@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <div className="heading">
-      <h1>MineSweeper</h1>
+      <h1>Claudes MineSweeper</h1>
       </div>
       <div className="aligned">   
         <Board/>

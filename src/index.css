@@ -1,47 +1,10 @@
-
-
-body{
-  background:url(https://media.istockphoto.com/photos/night-sky-with-stars-and-soft-milky-way-universe-as-background-or-picture-id971578384?b=1&k=20&m=971578384&s=170667a&w=0&h=Rpn3K4UC9rKyFjYj4_zXr7eR57nEn2iS1GFcmXYs3iI=) no-repeat center center fixed;
-  background-size:cover;   
-}
-.App {
-  text-align: center;
-}
-.App-header {
-  background-color: #282c34;
-  background-color: #00226d;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: rgb(172, 33, 33);
-}
-
-.App-link {
-  color: #61dafb;
-}
-.aligned{
-  display: flex;
-  margin: 40px auto;
-  justify-content: center;
-  align-items: center;
-}
-.heading{
-  text-align: center;
-  color: rgb(163, 33, 33);
-  font-size:35px;
-  text-shadow:2px 1px rgb(3, 3, 3);
-}
-
 @import url('https://fonts.googleapis.com/css?family=Kanit');
 
 h1 {
   font-family: 'Kanit';
   font-size: 60px;
   font-weight: 700;
-  color: rgb(0, 0, 0);
+  color: rgb(247, 247, 247);
   text-align: center;
   margin-top: 0.5rem;
 }
